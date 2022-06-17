@@ -176,8 +176,10 @@ iframe {
 }
 
 .wrap-login100 {
-  width: 960px;
-  background: #fff;
+  width: 860px;
+  background-image: url("../images/back4.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 10px;
   overflow: hidden;
 

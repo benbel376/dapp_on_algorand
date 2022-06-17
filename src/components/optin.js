@@ -1,4 +1,4 @@
-import img_1 from '../images/logo2.webp'
+import img_1 from '../images/logo.png'
 import '../css/optin.css';
 import '../fonts/font-awesome-4.7.0/css/font-awesome.min.css';
 import React, {useRef} from 'react';
