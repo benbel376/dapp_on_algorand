@@ -215,7 +215,9 @@
     width: 100%;
     top: 0;
     left: 0;
-    background-color: #57b846;
+    background-image: url("../images/block.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
     padding-top: 50px;
     padding-bottom: 39px;
   }
@@ -336,7 +338,7 @@
     width: 100%;
     resize: none;
     padding: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
   
   .t_login100-form-btn:hover {

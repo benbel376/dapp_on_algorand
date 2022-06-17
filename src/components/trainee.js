@@ -1,5 +1,7 @@
 import '../css/trainer.css';
 import '../css/util.css';
+
+import '../images/block.webp'
 import '../fonts/font-awesome-4.7.0/css/font-awesome.min.css';
 
 function Trainee() {
@@ -17,6 +19,11 @@ function Trainee() {
                     Check Status
                 </div>
                 <textarea rows="5" class = "status" disabled>r.Lorem ipsum dolo</textarea>
+                <div class="t_container-login100-form-btn">
+                    <button class="t_login100-form-btn">
+                        Refresh
+                    </button>
+                </div>
 
                 <div class="t_title">
                     Send Request
@@ -32,7 +39,7 @@ function Trainee() {
                 </div>
 
                 <div class="t_title">
-                    Check Status
+                    Access Resource
                 </div>
                 <div class="t_wrap-input100 t_validate-input" data-validate = "Please enter password">
                     <input class="t_input100" type="password" name="pass" placeholder="Password"/>
@@ -41,7 +48,7 @@ function Trainee() {
 
                 <div class="t_container-login100-form-btn">
                     <button class="t_login100-form-btn">
-                        Mint
+                        Load
                     </button>
                 </div>
             </form>
