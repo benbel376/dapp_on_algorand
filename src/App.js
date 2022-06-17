@@ -1,4 +1,5 @@
 import Optin from './components/optin';
+import Trainer from './components/trainer';
 import React, {useCallback, useState} from 'react';
 
 function App() {
@@ -11,6 +12,12 @@ function App() {
     return (
       <div>
       <Optin parentCallback={callback}/>
+     </div>
+    );
+  }else if (page === "trainer"){
+    return (
+      <div>
+      <Trainer/>
      </div>
     );
   }

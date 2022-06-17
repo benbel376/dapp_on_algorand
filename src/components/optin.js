@@ -1,5 +1,5 @@
 import img_1 from '../images/logo2.webp'
-import '../css/main.css';
+import '../css/optin.css';
 import '../fonts/font-awesome-4.7.0/css/font-awesome.min.css';
 import React, {useRef} from 'react';
 
@@ -9,7 +9,7 @@ function Optin({ parentCallback }) {
     if(valueRef.current.value==="one"){
         parentCallback("optin")
     }else if(valueRef.current.value === "two"){
-        parentCallback("member")
+        parentCallback("trainer")
     }else{
         parentCallback("trainee")
         console.log("here");
