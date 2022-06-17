@@ -1,5 +1,6 @@
 import Optin from './components/optin';
 import Trainer from './components/trainer';
+import Trainee from './components/trainee';
 import React, {useCallback, useState} from 'react';
 
 function App() {
@@ -18,6 +19,12 @@ function App() {
     return (
       <div>
       <Trainer/>
+     </div>
+    );
+  }else{
+    return (
+      <div>
+      <Trainee/>
      </div>
     );
   }
