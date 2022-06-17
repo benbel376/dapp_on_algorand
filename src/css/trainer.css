@@ -317,10 +317,54 @@
     transition: all 0.4s;
   }
   
-  .login100-form-btn:hover {
+  .t_login100-form-btn:hover {
     background-color: #1b3815;
   }
   
+  .select {
+    position: relative;
+    min-width: 200px;
+  }
+  .select select {
+    -webkit-appearance: none;
+    padding: 17px 40px 17px 35px;
+    width: 100%;
+    border: 1px solid #e8eaed;
+    border-radius: 25px;
+    background: #fff;
+    box-shadow: 0 1px 3px -2px #9098a9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+    margin-bottom: 30px;
+  }
+  .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 1em;
+    pointer-events: none;
+}
+  .select select:required:invalid {
+    color: #5a667f;
+  }
+  .select select option {
+    color: #223254;
+  }
+  .select select option[value=""][disabled] {
+    display: none;
+  }
+  .select select:focus {
+    outline: none;
+    border-color: #000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+  }
+  .select select:hover + svg {
+    stroke: #000;
+  }
   
   /*------------------------------------------------------------------
   [ Alert validate ]*/
