@@ -1,5 +1,4 @@
 import img_1 from './images/logo2.webp'
-import './App.css';
 import './css/main.css';
 import './fonts/font-awesome-4.7.0/css/font-awesome.min.css';
 
