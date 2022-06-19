@@ -1,60 +1,51 @@
+#samplecontract.py
 from pyteal import *
 
+"""Basic Counter Application"""
 
 def approval_program():
-    
-    
-    on_creation = Seq(
-        [
-            App.globalPut(Bytes("Creator"), Txn.sender()),
-            Assert(Txn.application_args.length() == Int(4)),
-            App.globalPut(Bytes("member1"), (Txn.application_args[0])),
-            App.globalPut(Bytes("member2"), (Txn.application_args[1])),
-            App.globalPut(Bytes("member3"), (Txn.application_args[2])),
-            App.globalPut(Bytes("member4"), (Txn.application_args[3])),
-            Return(Int(1)),
-        ]
+    handle_creation = Seq([
+        App.globalPut(Bytes("Creator"), Txn.sender()),
+        App.globalPut(Bytes("member1"), (Txn.application_args[0])),
+        App.globalPut(Bytes("member2"), (Txn.application_args[1])),
+        App.globalPut(Bytes("member3"), (Txn.application_args[2])),
+        App.globalPut(Bytes("member4"), (Txn.application_args[3])),
+        Return(Int(1)),
+    ])
+
+    handle_optin = Return(Int(0))
+    handle_closeout = Return(Int(0))
+    handle_updateapp = Return(Int(0))
+    handle_deleteapp = Return(Int(0))
+    handle_noop = Seq( 
+        If(
+            Or(
+                Txn.application_args[0] == App.globalGet(Bytes("member1")),
+                Txn.application_args[0] == App.globalGet(Bytes("member2")),
+                Txn.application_args[0] == App.globalGet(Bytes("member3")),
+                Txn.application_args[0] == App.globalGet(Bytes("member4")),
+            ),  
+            App.globalPut(Bytes("Count"), Int(1)),
+            App.globalPut(Bytes("Count"), Int(0))
+        ),
+        Return(Int(1)),
     )
-    
-    is_creator = Txn.sender() == App.globalGet(Bytes("Creator"))
-    
-    on_page_change = Return(
-         Or(
-            Txn.sender() == App.globalGet(Bytes("member1")),
-            Txn.sender() == App.globalGet(Bytes("member2")),
-            Txn.sender() == App.globalGet(Bytes("member3")),
-            Txn.sender() == App.globalGet(Bytes("member4")),
-        ),   
-    )
-    
-    
+
+
     program = Cond(
-        [Txn.application_id() == Int(0), on_creation],
-        [Txn.on_completion() == OnComplete.DeleteApplication, Return(is_creator)],
-        [Txn.on_completion() == OnComplete.UpdateApplication, Return(is_creator)],
-        [Txn.on_completion() == OnComplete.CloseOut, Return(Int(1))],
-        [Txn.on_completion() == OnComplete.OptIn, on_page_change],
+        [Txn.application_id() == Int(0), handle_creation],
+        [Txn.on_completion() == OnComplete.OptIn, handle_optin],
+        [Txn.on_completion() == OnComplete.CloseOut, handle_closeout],
+        [Txn.on_completion() == OnComplete.UpdateApplication, handle_updateapp],
+        [Txn.on_completion() == OnComplete.DeleteApplication, handle_deleteapp],
+        [Txn.on_completion() == OnComplete.NoOp, handle_noop]
     )
 
     return program
 
 
 def clear_state_program():
-    get_vote_of_sender = App.localGetEx(Int(0), App.id(), Bytes("voted"))
-    program = Seq(
-        [
-        Return(Int(1)),
-        ]
-    )
-
+    program = Return(Int(1))
     return program
 
 
-if __name__ == "__main__":
-    with open("login_approval.teal", "w") as f:
-        compiled = compileTeal(approval_program(), mode=Mode.Application, version=5)
-        f.write(compiled)
-
-    with open("login_clear_state.teal", "w") as f:
-        compiled = compileTeal(clear_state_program(), mode=Mode.Application, version=5)
-        f.write(compiled)
