@@ -91,7 +91,8 @@ let algodclient = new algosdk.Algodv2(token, server, port);
     const assetName = "Dan'certificate@arc3";
     const url = "https://s3.amazonaws.com/your-bucket/images/alice-nft.png";
     const managerAddr = address; 
-    const reserveAddr = address;  
+    const reserveAddr = address;
+    const genHash = "l05M2G4xMH/Qhd/EVQi8U/npVJFw6PROEotj4sQnvUg=";
     const freezeAddr = address;
     const clawbackAddr = address;
     const total = 1;                // NFTs have totalIssuance of exactly 1
@@ -104,6 +105,7 @@ let algodclient = new algosdk.Algodv2(token, server, port);
         assetMetadataHash: "sha256-/tih/7ew0eziEZIVD4qoTWb0YrElAuRG3b40SnEstyk=",
         manager: managerAddr,
         reserve: reserveAddr,
+        genesisHash: genHash,
         clawback: clawbackAddr,
         freeze: freezeAddr,
         total: total,
